@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Resource: stock.location -->
+
+        <record id="stock_location_transit_1" model="stock.location">
+            <field name="name">Transit Zone 1</field>
+            <field name="location_id" ref="stock.stock_location_company"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_transit_2" model="stock.location">
+            <field name="name">Transit Zone 2</field>
+            <field name="location_id" ref="stock.stock_location_company"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_transit_3" model="stock.location">
+            <field name="name">Transit Zone 3</field>
+            <field name="location_id" ref="stock.stock_location_company"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_transit_4" model="stock.location">
+            <field name="name">Transit Zone 4</field>
+            <field name="location_id" ref="stock.stock_location_company"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="stock_location_zone_1" model="stock.location">
+            <field name="name">Zone 1</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_zone_2" model="stock.location">
+            <field name="name">Zone 2</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_zone_3" model="stock.location">
+            <field name="name">Zone 3</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_zone_4" model="stock.location">
+            <field name="name">Zone 4</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="stock_location_zone_11" model="stock.location">
+            <field name="name">Z11</field>
+            <field name="location_id" ref="stock_location_zone_1"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_zone_12" model="stock.location">
+            <field name="name">Z12</field>
+            <field name="location_id" ref="stock_location_zone_1"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="stock_location_zone_21" model="stock.location">
+            <field name="name">Z21</field>
+            <field name="location_id" ref="stock_location_zone_2"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_zone_12" model="stock.location">
+            <field name="name">Z22</field>
+            <field name="location_id" ref="stock_location_zone_2"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="stock_location_zone_31" model="stock.location">
+            <field name="name">Z31</field>
+            <field name="location_id" ref="stock_location_zone_3"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_zone_32" model="stock.location">
+            <field name="name">Z32</field>
+            <field name="location_id" ref="stock_location_zone_3"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="stock_location_zone_41" model="stock.location">
+            <field name="name">Z41</field>
+            <field name="location_id" ref="stock_location_zone_4"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_zone_42" model="stock.location">
+            <field name="name">Z42</field>
+            <field name="location_id" ref="stock_location_zone_4"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_zone_43" model="stock.location">
+            <field name="name">Z43</field>
+            <field name="location_id" ref="stock_location_zone_4"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_zone_44" model="stock.location">
+            <field name="name">Z44</field>
+            <field name="location_id" ref="stock_location_zone_4"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="sequence_trans_4_1" model="ir.sequence">
+            <field name="name">Transfer 4 - 1</field>
+            <field name="code">stock.transfer</field>
+            <field name="prefix">Z4-1/</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+        <record id="sequence_trans_3_1" model="ir.sequence">
+            <field name="name">Transfer 3 - 1</field>
+            <field name="code">stock.transfer</field>
+            <field name="prefix">Z3-1/</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+        <record id="sequence_trans_2_1" model="ir.sequence">
+            <field name="name">Transfer 2 - 1</field>
+            <field name="code">stock.transfer</field>
+            <field name="prefix">Z2-1/</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <record id="picking_type_4_1" model="stock.picking.type">
+            <field name="name">Transfer 4 - 1</field>
+            <field name="code">internal</field>
+            <field name="sequence_id" ref="sequence_trans_4_1"/>
+            <field name="default_location_src_id" ref="stock_location_zone_4"/>
+            <field name="default_location_dest_id" ref="stock_location_zone_1"/>
+        </record>
+        <record id="picking_type_3_1" model="stock.picking.type">
+            <field name="name">Transfer 3 - 1</field>
+            <field name="code">internal</field>
+            <field name="sequence_id" ref="sequence_trans_3_1"/>
+            <field name="default_location_src_id" ref="stock_location_zone_3"/>
+            <field name="default_location_dest_id" ref="stock_location_zone_1"/>
+        </record>
+        <record id="picking_type_2_1" model="stock.picking.type">
+            <field name="name">Transfer 2 - 1</field>
+            <field name="code">internal</field>
+            <field name="sequence_id" ref="sequence_trans_2_1"/>
+            <field name="default_location_src_id" ref="stock_location_zone_2"/>
+            <field name="default_location_dest_id" ref="stock_location_zone_1"/>
+        </record>
+
+
+        <record id="putaway_p1_z11" model="stock.product.putaway.strategy">
+          <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
+          <field name="fixed_location_id" ref="stock_location_zone_11" />
+          <field name="max_capacity">5</field>
+          <field name="putaway_id" ref="product_putaway_per_product_wh"/>
+        </record>
+
+        <record id="putaway_p1_z41" model="stock.product.putaway.strategy">
+          <field name="product_tmpl_id" ref="product.product_product_7_product_template"/>
+          <field name="fixed_location_id" ref="stock_location_zone_41" />
+          <field name="max_capacity">0</field>
+          <field name="putaway_id" ref="product_putaway_per_product_wh"/>
+        </record>
+
+    </data>
+</odoo>

@@ -19,7 +19,11 @@
     'data': [
         'views/product.xml',
         'views/product_putaway.xml',
+        'views/stock_product_putaway_strategy.xml',
         'security/ir.model.access.csv',
+        'demo/stock_extended.xml',
+        'views/stock_picking.xml',
+        'wizard/stock_replentish.xml',
     ],
     'demo': [
         'demo/product_putaway.xml',

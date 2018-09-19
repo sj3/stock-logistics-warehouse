@@ -75,3 +75,4 @@ class StockFixedPutawayStrategy(models.Model):
         required=True,
         domain=[('usage', '=', 'internal')])
     sequence = fields.Integer()
+    max_capacity = fields.Integer()

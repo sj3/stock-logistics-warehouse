@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_stock_product_putaway_strategy_tree" model="ir.ui.view">
+    <field name="name">stock.product.putaway.strategy.tree</field>
+    <field name="model">stock.product.putaway.strategy</field>
+    <field name="arch" type="xml">
+      <tree string="Stock Product Putaway Strategy" editable="top" version="7.0">
+        <field name="product_tmpl_id" />
+        <field name="product_product_id" />
+        <field name="sequence" />
+        <field name="putaway_id" />
+        <field name="fixed_location_id" />
+        <field name="max_capacity" />
+      </tree>
+    </field>
+</record>
+
+  <record id="action_stock_product_putaway_strategy_tree" model="ir.actions.act_window">
+    <field name="name">Product Putaway Strategy</field>
+    <field name="res_model">stock.product.putaway.strategy</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_id" ref="view_stock_product_putaway_strategy_tree"/>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">
+        Click to create a stock product putaway.
+      </p>
+    </field>
+  </record>
+
+  <menuitem action="action_stock_product_putaway_strategy_tree"
+            id="menu_action_stock_product_putaway_strategy"
+            parent="stock.menu_stock_inventory_control"
+            sequence="30"/>
+
+</odoo>

@@ -24,6 +24,7 @@
                                    invisible="context.get('default_product_product_id', True)"
                                    domain="[('product_tmpl_id', '=', product_tmpl_id)]"/>
                             <field name="fixed_location_id"/>
+                            <field name="max_capacity"/>
                         </tree>
                     </field>
                 </group>
