@@ -13,8 +13,7 @@ class StockReplentish(models.TransientModel):
     stock_replentish_lines = fields.One2many(
         comodel_name="stock.replentish.line",
         inverse_name="replentish_id",
-        string="Lines"
-    )
+        string="Lines")
 
     def do_compute(self):
 
@@ -59,6 +58,10 @@ class StockReplentish(models.TransientModel):
             'name': 'Replentish'  # TODO
         })
 
+        route_ids = self.env['procurement.rule'].search([
+            ('picking_type_id', '=', self.picking_type_id.id)
+        ]).filtered(lambda x: x.route_id).mapped('route_id.id')
+
         for line in self.stock_replentish_lines:
             if line.qty_replentish > 0:
                 proc = self.env['procurement.order'].create({
@@ -69,8 +72,8 @@ class StockReplentish(models.TransientModel):
                     'product_uom': line.product_id.uom_id.id,
                     'group_id': replentish_group.id,
                     'product_qty': line.qty_replentish,
+                    'route_ids': [(6, 0, [route_ids])],
                 })
-                print 'loc:', line.location_id, ', proc:', proc.location_id
                 proc.run()
 
         return {}

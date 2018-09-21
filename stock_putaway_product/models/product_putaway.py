@@ -43,6 +43,26 @@ class ProductPutaway(models.Model):
         else:
             return super(ProductPutaway, self).putaway_apply(product)
 
+    def get_putaway_locations(self, product, location):
+        if self.method == 'per_product':
+            strategies = self.get_product_putaway_strategies(
+                product)
+            strategies = strategies.search([
+                ('id', 'in', strategies.mapped('id')),
+                ('fixed_location_id', 'child_of', location.id)
+            ])
+            return [
+                {
+                    'capacity': strategy.current_capacity,
+                    'max_capacity': strategy.max_capacity,
+                    'location_id': strategy.fixed_location_id.id,
+                }
+                for strategy in strategies
+                if strategy.current_capacity or strategy.max_capacity == 0
+            ]
+        else:
+            return []
+
 
 class StockFixedPutawayStrategy(models.Model):
     _name = 'stock.product.putaway.strategy'
@@ -76,3 +96,18 @@ class StockFixedPutawayStrategy(models.Model):
         domain=[('usage', '=', 'internal')])
     sequence = fields.Integer()
     max_capacity = fields.Integer()
+    current_capacity = fields.Integer(
+        string="Current capacity",
+        compute="_compute_current_capacity"
+    )
+
+    @api.multi
+    def _compute_current_capacity(self):
+        for strategy in self:
+            strategy.current_capacity = max(
+                0,
+                strategy.max_capacity -
+                (strategy.product_product_id or
+                 strategy.product_tmpl_id).with_context(
+                     location=[strategy.fixed_location_id.id]).qty_available
+            )
